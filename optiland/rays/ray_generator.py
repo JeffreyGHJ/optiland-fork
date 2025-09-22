@@ -71,6 +71,10 @@ class RayGenerator:
         intensity = be.ones_like(x1)
         wavelength = be.ones_like(x1) * wavelength
 
+        # Apply apodization scaling if defined on the Optic
+        if self.optic.apodization is not None:
+            intensity = intensity * self.optic.apodization.apply(Px, Py)
+
         if self.optic.polarization == "ignore":
             if self.optic.surface_group.uses_polarization:
                 raise ValueError(

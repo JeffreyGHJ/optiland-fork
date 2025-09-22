@@ -69,7 +69,7 @@ class Optic:
         self.solves = SolveManager(self)
         self.obj_space_telecentric = False
         self._updater = OpticUpdater(self)
-
+        self.apodization = None  # <-- Added apodization attribute (default: None)
     def __add__(self, other):
         """Add two Optic objects together."""
         new_optic = deepcopy(self)
